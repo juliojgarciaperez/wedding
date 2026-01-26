@@ -1,11 +1,11 @@
 // Añadir evento al calendario
 document.getElementById("add-calendar").addEventListener("click", function () {
   const event = {
-    title: "Boda - Hacienda de Xenis",
-    description: "Celebración de nuestra boda en Hacienda de Xenis, Chucena",
+    title: "Boda Carmen & Julio",
+    description: "Boda de Carmen & Julio",
     location: "Hacienda de Xenis, Chucena",
-    start: "2026-10-10T17:00:00",
-    end: "2026-10-11T04:00:00",
+    start: "2026-10-10T10:00:00",
+    end: "2026-10-10T02:00:00",
   };
 
   // Crear archivo .ics
@@ -25,7 +25,7 @@ SEQUENCE:0
 BEGIN:VALARM
 TRIGGER:-P1W
 ACTION:DISPLAY
-DESCRIPTION:Recordatorio: Boda en una semana
+DESCRIPTION:Recordatorio: Boda Carmen & Julio
 END:VALARM
 END:VEVENT
 END:VCALENDAR`;
@@ -34,7 +34,7 @@ END:VCALENDAR`;
   const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
   const link = document.createElement("a");
   link.href = window.URL.createObjectURL(blob);
-  link.download = "boda-10-10-2026.ics";
+  link.download = "carmen-y-julio-10-10-2026.ics";
   link.click();
 });
 
