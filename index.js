@@ -79,7 +79,6 @@ document.getElementById("copy-iban").addEventListener("click", function () {
 // Formulario de confirmación
 const form = document.getElementById("rsvp-form");
 const formMessage = document.getElementById("form-message");
-const rsvpSection = document.querySelector("#rsvp-form").closest("section");
 
 // Comprobar si ya se ha enviado el formulario
 window.addEventListener("DOMContentLoaded", function () {
@@ -118,7 +117,7 @@ form.addEventListener("submit", async function (e) {
       },
     );
 
-    if (response.status === 200) {
+    if (response.status === 201) {
       // Guardar en localStorage que ya se ha enviado
       localStorage.setItem("rsvpSubmitted", "true");
       localStorage.setItem("rsvpData", JSON.stringify(formData));
@@ -162,7 +161,9 @@ function showThankYouMessage() {
 
   // Insertar el mensaje después del título de la sección
   const titleDiv = document.querySelector("#confirm");
-  titleDiv.insertAdjacentHTML("afterend", thankYouHTML);
+  if (titleDiv) {
+    titleDiv.insertAdjacentHTML("afterend", thankYouHTML);
+  }
 
   // Ocultar el mensaje de error/éxito si existe
   formMessage.classList.add("hidden");
