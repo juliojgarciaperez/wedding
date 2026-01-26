@@ -79,8 +79,16 @@ document.getElementById("copy-iban").addEventListener("click", function () {
 // Formulario de confirmación
 const form = document.getElementById("rsvp-form");
 const formMessage = document.getElementById("form-message");
+const rsvpSection = document.querySelector("#rsvp-form").closest("section");
 
-form.addEventListener("submit", function (e) {
+// Comprobar si ya se ha enviado el formulario
+window.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("rsvpSubmitted") === "true") {
+    showThankYouMessage();
+  }
+});
+
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const formData = {
@@ -91,33 +99,74 @@ form.addEventListener("submit", function (e) {
     timestamp: new Date().toISOString(),
   };
 
-  // Aquí puedes enviar los datos a un servidor
-  // Por ahora, solo mostramos un mensaje de confirmación
-  console.log("Datos del formulario:", formData);
+  try {
+    // Mostrar mensaje de carga
+    formMessage.className =
+      "mt-4 p-4 bg-neutral-100 border-l-4 border-neutral-500 text-neutral-800 font-sans";
+    formMessage.textContent = "Enviando confirmación...";
+    formMessage.classList.remove("hidden");
 
-  // Mostrar mensaje de éxito
-  formMessage.className =
-    "mt-4 p-4 bg-neutral-100 border-l-4 border-neutral-900 text-neutral-800 font-sans";
-  formMessage.textContent =
-    "✓ ¡Gracias por confirmar tu asistencia! Nos vemos el 10 de Octubre de 2026";
-  formMessage.classList.remove("hidden");
+    // Enviar POST al servidor
+    const response = await fetch(
+      "https://admin.casadocondedental.es/api/wedding",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      },
+    );
 
-  // Limpiar formulario
-  form.reset();
+    if (response.status === 200) {
+      // Guardar en localStorage que ya se ha enviado
+      localStorage.setItem("rsvpSubmitted", "true");
+      localStorage.setItem("rsvpData", JSON.stringify(formData));
 
-  // Guardar en localStorage (opcional)
-  const savedRSVPs = JSON.parse(localStorage.getItem("rsvps") || "[]");
-  savedRSVPs.push(formData);
-  localStorage.setItem("rsvps", JSON.stringify(savedRSVPs));
-
-  // Scroll suave al mensaje
-  formMessage.scrollIntoView({ behavior: "smooth", block: "center" });
-
-  // Ocultar mensaje después de 5 segundos
-  setTimeout(() => {
-    formMessage.classList.add("hidden");
-  }, 5000);
+      // Mostrar mensaje de agradecimiento
+      showThankYouMessage();
+    } else {
+      // Error del servidor
+      formMessage.className =
+        "mt-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-800 font-sans";
+      formMessage.textContent =
+        "Hubo un error al enviar tu confirmación. Por favor, inténtalo de nuevo.";
+    }
+  } catch (error) {
+    console.error("Error al enviar el formulario:", error);
+    formMessage.className =
+      "mt-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-800 font-sans";
+    formMessage.textContent =
+      "No se pudo conectar con el servidor. Por favor, verifica tu conexión e inténtalo de nuevo.";
+  }
 });
+
+function showThankYouMessage() {
+  // Ocultar el formulario
+  form.style.display = "none";
+
+  // Mostrar mensaje de agradecimiento
+  const thankYouHTML = `
+    <div class="text-center py-12">
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-neutral-900 mb-6">
+        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      <h3 class="font-display text-4xl md:text-5xl text-neutral-900 mb-4">¡Gracias!</h3>
+      <p class="font-sans text-lg text-neutral-600 max-w-md mx-auto">
+        Hemos recibido tu confirmación. ¡Nos vemos el 10 de Octubre de 2026 en Hacienda de Xenis!
+      </p>
+    </div>
+  `;
+
+  // Insertar el mensaje después del título de la sección
+  const titleDiv = document.querySelector("#confirm");
+  titleDiv.insertAdjacentHTML("afterend", thankYouHTML);
+
+  // Ocultar el mensaje de error/éxito si existe
+  formMessage.classList.add("hidden");
+}
 
 // Animación de scroll suave para todos los enlaces internos
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
