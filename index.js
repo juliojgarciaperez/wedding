@@ -167,6 +167,8 @@ function showThankYouMessage() {
 
   // Ocultar el mensaje de error/éxito si existe
   formMessage.classList.add("hidden");
+
+  location.href = "#confirm";
 }
 
 // Animación de scroll suave para todos los enlaces internos
