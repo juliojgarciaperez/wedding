@@ -227,3 +227,45 @@ window.addEventListener("scroll", function () {
     ticking = true;
   }
 });
+
+// Menú hamburguesa
+const menuToggle = document.getElementById("menu-toggle");
+const menuOverlay = document.getElementById("menu-overlay");
+const menuLinks = document.querySelectorAll(".menu-link");
+
+menuToggle.addEventListener("click", function () {
+  const isOpen = menuOverlay.classList.contains("opacity-0");
+
+  if (isOpen) {
+    // Abrir menú
+    menuOverlay.classList.remove("opacity-0", "pointer-events-none");
+    menuOverlay.classList.add("opacity-100");
+    // Animar hamburguesa a X
+    const spans = menuToggle.querySelectorAll("span");
+    spans[0].style.transform = "rotate(45deg) translateY(8px)";
+    spans[1].style.opacity = "0";
+    spans[2].style.transform = "rotate(-45deg) translateY(-8px)";
+  } else {
+    // Cerrar menú
+    menuOverlay.classList.add("opacity-0", "pointer-events-none");
+    menuOverlay.classList.remove("opacity-100");
+    // Restaurar hamburguesa
+    const spans = menuToggle.querySelectorAll("span");
+    spans[0].style.transform = "";
+    spans[1].style.opacity = "1";
+    spans[2].style.transform = "";
+  }
+});
+
+// Cerrar menú al hacer clic en un enlace
+menuLinks.forEach((link) => {
+  link.addEventListener("click", function () {
+    menuOverlay.classList.add("opacity-0", "pointer-events-none");
+    menuOverlay.classList.remove("opacity-100");
+    // Restaurar hamburguesa
+    const spans = menuToggle.querySelectorAll("span");
+    spans[0].style.transform = "";
+    spans[1].style.opacity = "1";
+    spans[2].style.transform = "";
+  });
+});

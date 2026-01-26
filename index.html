@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nuestra Boda - 10/10/2026</title>
+    <title>Carmen y Julio - 10.10.2026</title>
 
     <!-- Open Graph / WhatsApp -->
     <meta property="og:type" content="website" />
@@ -29,6 +29,63 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body class="bg-white min-h-screen antialiased">
+    <!-- Botón Menú Hamburguesa -->
+    <button
+      id="menu-toggle"
+      class="fixed top-6 right-6 z-50 w-12 h-12 flex flex-col items-center justify-center gap-1.5 bg-neutral-900/80 backdrop-blur-sm rounded-full hover:bg-neutral-900 transition-all duration-300"
+      aria-label="Menú"
+    >
+      <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+      <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+      <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+    </button>
+
+    <!-- Menú Overlay -->
+    <div
+      id="menu-overlay"
+      class="fixed inset-0 bg-neutral-900/95 backdrop-blur-md z-40 opacity-0 pointer-events-none transition-opacity duration-500"
+    >
+      <nav class="h-full flex items-center justify-center">
+        <ul class="text-center space-y-8">
+          <li>
+            <a
+              href="#celebracion"
+              class="menu-link font-display text-4xl md:text-6xl text-white hover:text-neutral-300 transition-colors duration-300"
+              >Detalles</a
+            >
+          </li>
+          <li>
+            <a
+              href="#alojamiento"
+              class="menu-link font-display text-4xl md:text-6xl text-white hover:text-neutral-300 transition-colors duration-300"
+              >Alojamiento</a
+            >
+          </li>
+          <li>
+            <a
+              href="#cronologia"
+              class="menu-link font-display text-4xl md:text-6xl text-white hover:text-neutral-300 transition-colors duration-300"
+              >Cronología</a
+            >
+          </li>
+          <li>
+            <a
+              href="#confirmar"
+              class="menu-link font-display text-4xl md:text-6xl text-white hover:text-neutral-300 transition-colors duration-300"
+              >Confirmar</a
+            >
+          </li>
+          <li>
+            <a
+              href="#regalos"
+              class="menu-link font-display text-4xl md:text-6xl text-white hover:text-neutral-300 transition-colors duration-300"
+              >Regalos</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+
     <!-- Contenido Principal -->
     <div id="main-content">
       <!-- Hero Section - Bienvenida -->
@@ -81,7 +138,7 @@
       </section>
 
       <!-- Información del Evento -->
-      <section class="py-24 px-6">
+      <section id="celebracion" class="py-24 px-6">
         <div class="max-w-4xl mx-auto">
           <div class="text-center mb-20">
             <p
@@ -212,8 +269,79 @@
         </div>
       </section>
 
+      <!-- Alojamiento -->
+      <section id="alojamiento" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <p
+              class="font-sans text-sm tracking-[0.3em] uppercase text-neutral-400 mb-4"
+            >
+              Alojamiento
+            </p>
+            <h2
+              class="font-display text-5xl md:text-7xl text-neutral-900 tracking-tight mb-8"
+            >
+              Dónde hospedarte
+            </h2>
+          </div>
+
+          <div class="max-w-2xl mx-auto text-center">
+            <div class="bg-neutral-50 p-8 md:p-10 border border-neutral-200">
+              <div
+                class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-neutral-900 mb-6"
+              >
+                <svg
+                  class="w-8 h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="font-display text-3xl text-neutral-900 mb-4">
+                Hotel Exe Tartessos
+              </h3>
+              <p class="font-sans text-lg text-neutral-600 mb-2">Huelva</p>
+              <p
+                class="font-sans text-base text-neutral-700 leading-relaxed mb-8"
+              >
+                Tenemos un descuento especial para los invitados a nuestra boda.
+                Reserva tu estancia y disfruta de un precio único para este día
+                tan especial.
+              </p>
+              <a
+                href="https://www.eurostarshotels.com/exe-tartessos.html"
+                target="_blank"
+                class="inline-flex items-center gap-2 bg-neutral-900 text-white px-8 py-4 font-sans text-sm tracking-wider uppercase hover:bg-neutral-800 transition-all duration-300"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  ></path>
+                </svg>
+                Ver Hotel
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Timeline -->
-      <section class="py-24 px-6 bg-neutral-50">
+      <section id="cronologia" class="py-24 px-6 bg-neutral-50">
         <div class="max-w-4xl mx-auto">
           <div class="text-center mb-20">
             <p
@@ -367,7 +495,7 @@
       </section>
 
       <!-- Lista de Bodas -->
-      <section class="py-24 px-6 bg-neutral-50">
+      <section id="regalos" class="py-24 px-6 bg-neutral-50">
         <div class="max-w-3xl mx-auto text-center">
           <div class="mb-12">
             <p
