@@ -94,6 +94,7 @@ form.addEventListener("submit", async function (e) {
     guestName: document.getElementById("guest-name").value,
     companionName: document.getElementById("companion-name").value,
     dietary: document.getElementById("dietary").value,
+    bus: document.querySelector('input[name="bus"]:checked').value,
     message: document.getElementById("message").value,
     timestamp: new Date().toISOString(),
   };
