@@ -1,0 +1,233 @@
+/* Fuentes personalizadas */
+.font-display {
+    font-family: 'Playfair Display', serif;
+}
+
+.font-sans {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Reset y estilos base */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animación del sobre - estilo minimalista */
+.envelope-wrapper {
+    perspective: 1000px;
+}
+
+.envelope {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    transition: transform 0.4s ease;
+    transform-style: preserve-3d;
+}
+
+.envelope:hover {
+    transform: translateY(-8px);
+}
+
+.envelope .body {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-bottom: 110px solid #ffffff;
+    z-index: 2;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.07));
+}
+
+.envelope .body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -160px;
+    width: 320px;
+    height: 110px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+}
+
+.envelope .flap {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-top: 110px solid #262626;
+    z-index: 3;
+    transform-origin: top;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.envelope.opened .flap {
+    transform: rotateX(180deg);
+    border-top-color: #404040;
+}
+
+.envelope .letter {
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    width: 270px;
+    height: 350px;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    z-index: 1;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+}
+
+.envelope.opened .letter {
+    transform: translateY(-180px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.letter-content {
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+}
+
+.envelope.opened .letter-content {
+    opacity: 1;
+    transition-delay: 0.5s;
+}
+
+/* Animaciones generales */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Animación escalonada para fotos */
+.photo-card {
+    animation: fadeIn 0.6s ease-out backwards;
+}
+
+.photo-card:nth-child(1) { animation-delay: 0.05s; }
+.photo-card:nth-child(2) { animation-delay: 0.1s; }
+.photo-card:nth-child(3) { animation-delay: 0.15s; }
+.photo-card:nth-child(4) { animation-delay: 0.2s; }
+.photo-card:nth-child(5) { animation-delay: 0.25s; }
+.photo-card:nth-child(6) { animation-delay: 0.3s; }
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Inputs minimalistas */
+input::placeholder,
+textarea::placeholder {
+    color: #a3a3a3;
+}
+
+/* Quitar autofill amarillo */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Transiciones suaves */
+a, button {
+    transition: all 0.3s ease;
+}
+
+/* Responsivo para sobre */
+@media (max-width: 640px) {
+    .envelope {
+        width: 280px;
+        height: 190px;
+    }
+    
+    .envelope .body {
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-bottom: 95px solid #ffffff;
+    }
+    
+    .envelope .body::before {
+        left: -140px;
+        width: 280px;
+        height: 95px;
+    }
+    
+    .envelope .flap {
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-top: 95px solid #262626;
+    }
+    
+    .envelope .letter {
+        left: 20px;
+        width: 240px;
+        height: 320px;
+    }
+    
+    .envelope.opened .letter {
+        transform: translateY(-160px);
+    }
+}
+
+/* Efecto hover en botones */
+button:active,
+a:active {
+    transform: scale(0.98);
+}
+
+/* Selección de texto personalizada */
+::selection {
+    background-color: #262626;
+    color: #ffffff;
+}
+
+/* Animaciones de scroll reveal */
+.section-hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Variaciones de animación para diferentes secciones */
+section:nth-child(odd).section-hidden {
+    transform: translateY(50px) scale(0.95);
+}
+
+section:nth-child(odd).section-visible {
+    transform: translateY(0) scale(1);
+}
+
+section:nth-child(even).section-hidden {
+    transform: translateY(30px);
+}
+
+section:nth-child(even).section-visible {
+    transform: translateY(0);
+}
