@@ -1,3 +1,12 @@
+// Mostrar número de cuenta
+document.getElementById("show-iban").addEventListener("click", function () {
+  const ibanContainer = document.getElementById("iban-container");
+  const showButton = document.getElementById("show-iban");
+
+  ibanContainer.classList.remove("hidden");
+  showButton.classList.add("hidden");
+});
+
 // Copiar número de cuenta
 document.getElementById("copy-iban").addEventListener("click", function () {
   const iban = "ES93 0073 0100 5105 7530 1567";
