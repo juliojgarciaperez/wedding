@@ -1,3 +1,29 @@
+// Asegurar reproducción automática del video en iOS
+document.addEventListener("DOMContentLoaded", function () {
+  const video = document.getElementById("hero-video");
+  if (video) {
+    video.setAttribute("muted", "");
+    video.muted = true;
+
+    // Intentar reproducir el video
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch((error) => {
+        // Si falla la reproducción automática, intentar al interactuar
+        console.log("Autoplay prevented, waiting for user interaction");
+        document.body.addEventListener(
+          "touchstart",
+          function () {
+            video.play();
+          },
+          { once: true },
+        );
+      });
+    }
+  }
+});
+
 // Mostrar número de cuenta
 document.getElementById("show-iban").addEventListener("click", function () {
   const ibanContainer = document.getElementById("iban-container");
