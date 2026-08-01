@@ -63,10 +63,9 @@ document.getElementById("copy-iban").addEventListener("click", function () {
 const form = document.getElementById("rsvp-form");
 const formMessage = document.getElementById("form-message");
 
-// Comprobar si ya se ha enviado el formulario
 window.addEventListener("DOMContentLoaded", function () {
   if (localStorage.getItem("rsvpSubmitted") === "true") {
-    showThankYouMessage();
+    showThankYouMessage({ scroll: false });
   }
 });
 
@@ -124,7 +123,7 @@ form.addEventListener("submit", async function (e) {
   }
 });
 
-function showThankYouMessage() {
+function showThankYouMessage({ scroll = true } = {}) {
   // Ocultar el formulario
   form.style.display = "none";
 
@@ -152,9 +151,11 @@ function showThankYouMessage() {
   // Ocultar el mensaje de error/éxito si existe
   formMessage.classList.add("hidden");
 
-  window.setTimeout(() => {
-    location.href = "#confirm";
-  }, 200);
+  if (scroll) {
+    window.setTimeout(() => {
+      location.href = "#confirm";
+    }, 200);
+  }
 }
 
 // Animación de scroll suave para todos los enlaces internos
