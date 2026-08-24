@@ -134,12 +134,20 @@
           </div>
           <div class="space-y-2 max-w-2xl mx-auto">
             <a
+              id="hero-cta"
               href="#confirmar"
               class="inline-block bg-neutral-900 text-white px-8 py-4 font-sans text-sm tracking-wider uppercase hover:bg-neutral-800 transition-all duration-300"
             >
               Confirma tu asistencia
             </a>
           </div>
+          <script>
+            if (localStorage.getItem("rsvpSubmitted") === "true") {
+              var cta = document.getElementById("hero-cta");
+              cta.href = "#cronologia";
+              cta.textContent = "Consultar programación";
+            }
+          </script>
         </div>
         <div
           class="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-2 animate-bounce"
@@ -436,6 +444,9 @@
                     >
                       🌿 Bienvenida
                     </h3>
+                    <p class="font-sans text-sm text-neutral-500">
+                      Hacienda Xenis
+                    </p>
                   </div>
                 </div>
               </div>
@@ -457,6 +468,9 @@
                     >
                       💍 Ceremonia
                     </h3>
+                    <p class="font-sans text-sm text-neutral-500">
+                      Hacienda Xenis
+                    </p>
                   </div>
                 </div>
               </div>
@@ -478,6 +492,9 @@
                     >
                       🥂 Cóctel
                     </h3>
+                    <p class="font-sans text-sm text-neutral-500">
+                      Hacienda Xenis
+                    </p>
                   </div>
                 </div>
               </div>
@@ -499,6 +516,9 @@
                     >
                       🍽️ Banquete
                     </h3>
+                    <p class="font-sans text-sm text-neutral-500">
+                      Hacienda Xenis
+                    </p>
                   </div>
                 </div>
               </div>
@@ -520,6 +540,9 @@
                     >
                       💃 Fiesta
                     </h3>
+                    <p class="font-sans text-sm text-neutral-500">
+                      Hacienda Xenis
+                    </p>
                   </div>
                 </div>
               </div>
